@@ -37,7 +37,11 @@ export default function FileUploader({
           const flatrate = d2.results?.IT?.flatrate;
           if (!flatrate) return;
 
-          found.push({ title: film.Title, platforms: flatrate });
+          found.push({
+            title: film.Title,
+            platforms: flatrate,
+            releaseDate: d.movie_results[0]?.release_date,
+          });
         } catch (error) {
           console.error(error);
         }

@@ -22,4 +22,5 @@ export interface Platform {
 export interface Result {
   title: string;
   platforms: Platform[];
+  releaseDate: string;
 }

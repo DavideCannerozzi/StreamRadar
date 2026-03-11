@@ -1,4 +1,3 @@
-import React from "react";
 import type { Result } from "../FileUploader/FileUploader.types";
 
 interface MovieListProps {
@@ -14,6 +13,8 @@ export default function MovieList({ results }: MovieListProps) {
           className="flex items-center justify-center gap-4 border-b border-gray-200 pb-4"
         >
           <span className="text-sm font-medium">{result.title}</span>
+          <span className="text-sm font-medium">{result.releaseDate}</span>
+          <span></span>
           <div className="flex gap-8">
             {result.platforms.map((platform) => (
               <img
