@@ -48,8 +48,19 @@ export default function FileUploader({
 
   return (
     <div>
-      <input type="file" name="file" accept=".csv" onChange={handleFile} />
-      <button onClick={handleSearch}>Search</button>
+      <input
+        type="file"
+        name="file"
+        accept=".csv"
+        onChange={handleFile}
+        className="text-sm text-gray-500 file:mr-4 file:py-2 file:px-6 file:border file:border-black file:bg-white file:text-black file:text-sm file:font-medium hover:file:bg-black hover:file:text-white file:transition-colors file:duration-200 file:cursor-pointer"
+      />
+      <button
+        onClick={handleSearch}
+        className="bg-white text-black border border-black px-6 py-2 text-sm font-medium hover:bg-black hover:text-white transition-colors duration-200"
+      >
+        Search
+      </button>
     </div>
   );
 }

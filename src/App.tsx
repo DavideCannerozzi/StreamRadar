@@ -10,11 +10,11 @@ function App() {
   const [data, setData] = useState<Movies[]>([]);
   const [results, setResults] = useState<Result[]>([]);
   return (
-    <>
-      <h1>Stream Radar</h1>
+    <div className="container mx-auto border min-h-screen flex flex-col items-center gap-24">
+      <h1 className="text-4xl font-bold tracking-tight mt-12">Stream Radar</h1>
       <FileUploader setData={setData} data={data} setResults={setResults} />
       <MovieList results={results} />
-    </>
+    </div>
   );
 }
 
