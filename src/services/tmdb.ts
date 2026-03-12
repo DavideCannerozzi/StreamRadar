@@ -6,9 +6,10 @@ import type {
 export const searchMovies = async (
   data: Movies[],
   setResults: (results: Result[]) => void,
+  setLoading: (loading: boolean) => void,
 ) => {
   const found: Result[] = [];
-
+  setLoading(true);
   await Promise.all(
     data.map(async (film) => {
       try {
@@ -37,4 +38,5 @@ export const searchMovies = async (
     }),
   );
   setResults(found);
+  setLoading(false);
 };

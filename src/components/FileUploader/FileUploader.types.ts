@@ -10,6 +10,8 @@ export interface FileUploaderProps {
   data: Movies[];
   setData: (data: Movies[]) => void;
   setResults: (data: Result[]) => void;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface Platform {

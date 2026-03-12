@@ -6,6 +6,8 @@ export default function FileUploader({
   setData,
   data,
   setResults,
+  loading,
+  setLoading,
 }: FileUploaderProps) {
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
@@ -19,7 +21,7 @@ export default function FileUploader({
   };
 
   const handleSearch = () => {
-    searchMovies(data, setResults);
+    searchMovies(data, setResults, setLoading);
   };
 
   return (
@@ -33,9 +35,10 @@ export default function FileUploader({
       />
       <button
         onClick={handleSearch}
-        className="bg-white text-black border border-black px-6 py-2 text-sm font-medium hover:bg-black hover:text-white transition-colors duration-200"
+        disabled={data.length === 0 || loading}
+        className=" bg-white text-black border border-black px-6 py-2 text-sm font-medium hover:bg-black hover:text-white transition-colors duration-200 disabled:bg-gray-300 disabled:text-gray disabled:border-gray-300 disabled:cursor-not-allowed"
       >
-        Search
+        {loading ? "Searching..." : "Search"}
       </button>
     </div>
   );

@@ -9,10 +9,17 @@ import type {
 function App() {
   const [data, setData] = useState<Movies[]>([]);
   const [results, setResults] = useState<Result[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   return (
     <div className="container mx-auto border min-h-screen flex flex-col items-center gap-24">
       <h1 className="text-4xl font-bold tracking-tight mt-12">Stream Radar</h1>
-      <FileUploader setData={setData} data={data} setResults={setResults} />
+      <FileUploader
+        setData={setData}
+        data={data}
+        setResults={setResults}
+        loading={loading}
+        setLoading={setLoading}
+      />
       <MovieList results={results} />
     </div>
   );
