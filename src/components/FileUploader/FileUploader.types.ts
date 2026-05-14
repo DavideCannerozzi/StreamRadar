@@ -1,9 +1,9 @@
 export interface Movies {
-  Const: number;
+  imdbId: number;
   Title: string;
   Year: number;
   TitleType: string;
-  ReleaseData: number;
+  ReleaseDate: number;
 }
 
 export interface FileUploaderProps {
@@ -22,6 +22,7 @@ export interface Platform {
 }
 
 export interface Result {
+  imdbId: string;
   title: string;
   platforms: Platform[];
   releaseDate: string;

@@ -10,10 +10,11 @@ export default function MovieList({ results }: MovieListProps) {
     <>
       {results.length === 0 ? (
         <p className="text-gray-400">
-          Upload your IMDB watchlist and click Search to find available films
+          No streaming providers found yet. Upload your IMDb watchlist and click
+          Search to check availability.
         </p>
       ) : (
-        <table className="table-auto border-red-400 w-full">
+        <table className="table-auto w-full">
           <thead>
             <tr>
               <th className="text-left pb-8">Title</th>
@@ -22,9 +23,8 @@ export default function MovieList({ results }: MovieListProps) {
             </tr>
           </thead>
           <tbody>
-            {" "}
-            {results.map((result, i) => (
-              <MovieCard key={i} result={result} />
+            {results.map((result) => (
+              <MovieCard key={result.imdbId} result={result} />
             ))}
           </tbody>
         </table>

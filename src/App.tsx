@@ -11,7 +11,7 @@ function App() {
   const [results, setResults] = useState<Result[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   return (
-    <div className="container mx-auto border min-h-screen flex flex-col items-center gap-24">
+    <div className="container mx-auto min-h-screen flex flex-col items-center gap-24">
       <h1 className="text-4xl font-bold tracking-tight mt-12">Stream Radar</h1>
       <FileUploader
         setData={setData}
