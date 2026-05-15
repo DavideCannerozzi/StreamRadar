@@ -10,6 +10,7 @@ function App() {
   const [data, setData] = useState<Movies[]>([]);
   const [results, setResults] = useState<Result[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   return (
     <div className="container mx-auto min-h-screen flex flex-col items-center gap-24">
       <h1 className="text-4xl font-bold tracking-tight mt-12">Stream Radar</h1>
@@ -19,8 +20,9 @@ function App() {
         setResults={setResults}
         loading={loading}
         setLoading={setLoading}
+        setError={setError}
       />
-      <MovieList results={results} />
+      <MovieList results={results} error={error} />
     </div>
   );
 }

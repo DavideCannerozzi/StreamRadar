@@ -8,13 +8,20 @@ export default function FileUploader({
   setResults,
   loading,
   setLoading,
+  setError,
 }: FileUploaderProps) {
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError(null);
     if (!e.target.files) return;
     Papa.parse<Movies>(e.target.files[0], {
       header: true,
       skipEmptyLines: true,
       complete: (results) => {
+        if (!results.data[0]?.Const) {
+          setData([]);
+          setError("The csv file is not a valid IMDB csv file");
+          return;
+        }
         setData(results.data);
       },
     });
@@ -22,6 +29,7 @@ export default function FileUploader({
 
   const handleSearch = () => {
     searchMovies(data, setResults, setLoading);
+    setError(null);
   };
 
   return (

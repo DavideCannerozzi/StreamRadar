@@ -3,12 +3,15 @@ import MovieCard from "../MovieCard/MovieCard";
 
 interface MovieListProps {
   results: Result[];
+  error: string | null;
 }
 
-export default function MovieList({ results }: MovieListProps) {
+export default function MovieList({ results, error }: MovieListProps) {
   return (
     <>
-      {results.length === 0 ? (
+      {error ? (
+        <p className="text-red-500 font-bold">{error}</p>
+      ) : results.length === 0 ? (
         <p className="text-gray-400">
           No streaming providers found yet. Upload your IMDb watchlist and click
           Search to check availability.
@@ -24,7 +27,7 @@ export default function MovieList({ results }: MovieListProps) {
           </thead>
           <tbody>
             {results.map((result) => (
-              <MovieCard key={result.imdbId} result={result} />
+              <MovieCard key={result.Const} result={result} />
             ))}
           </tbody>
         </table>

@@ -14,7 +14,7 @@ export const searchMovies = async (
     data.map(async (film) => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/find/${film.imdbId}?external_source=imdb_id&api_key=${import.meta.env.VITE_API_KEY}`,
+          `https://api.themoviedb.org/3/find/${film.Const}?external_source=imdb_id&api_key=${import.meta.env.VITE_API_KEY}`,
         );
         const d = await response.json();
         const tmdbId = d.movie_results[0]?.id;
@@ -28,7 +28,7 @@ export const searchMovies = async (
         if (!flatrate) return;
 
         found.push({
-          imdbId: String(film.imdbId),
+          Const: film.Const,
           title: film.Title,
           platforms: flatrate,
           releaseDate: d.movie_results[0]?.release_date,

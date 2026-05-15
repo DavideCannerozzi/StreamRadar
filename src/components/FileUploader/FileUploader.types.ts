@@ -1,5 +1,5 @@
 export interface Movies {
-  imdbId: number;
+  Const: number;
   Title: string;
   Year: number;
   TitleType: string;
@@ -12,6 +12,7 @@ export interface FileUploaderProps {
   setResults: (data: Result[]) => void;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setError: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export interface Platform {
@@ -22,7 +23,7 @@ export interface Platform {
 }
 
 export interface Result {
-  imdbId: string;
+  Const: number;
   title: string;
   platforms: Platform[];
   releaseDate: string;
