@@ -10,34 +10,40 @@ export const searchMovies = async (
 ) => {
   const found: Result[] = [];
   setLoading(true);
-  await Promise.all(
-    data.map(async (film) => {
-      try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/find/${film.Const}?external_source=imdb_id&api_key=${import.meta.env.VITE_API_KEY}`,
-        );
-        const d = await response.json();
-        const tmdbId = d.movie_results[0]?.id;
-        if (!tmdbId) return;
+  const batchSize = 10;
 
-        const response2 = await fetch(
-          `https://api.themoviedb.org/3/movie/${tmdbId}/watch/providers?api_key=${import.meta.env.VITE_API_KEY}`,
-        );
-        const d2 = await response2.json();
-        const flatrate = d2.results?.IT?.flatrate;
-        if (!flatrate) return;
+  for (let i = 0; i < data.length; i += batchSize) {
+    const batchArray = data.slice(i, i + batchSize);
+    await Promise.all(
+      batchArray.map(async (film) => {
+        try {
+          const response = await fetch(
+            `https://api.themoviedb.org/3/find/${film.Const}?external_source=imdb_id&api_key=${import.meta.env.VITE_API_KEY}`,
+          );
+          const d = await response.json();
+          const tmdbId = d.movie_results[0]?.id;
+          if (!tmdbId) return;
 
-        found.push({
-          Const: film.Const,
-          title: film.Title,
-          platforms: flatrate,
-          releaseDate: d.movie_results[0]?.release_date,
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    }),
-  );
+          const response2 = await fetch(
+            `https://api.themoviedb.org/3/movie/${tmdbId}/watch/providers?api_key=${import.meta.env.VITE_API_KEY}`,
+          );
+          const d2 = await response2.json();
+          const flatrate = d2.results?.IT?.flatrate;
+          if (!flatrate) return;
+
+          found.push({
+            Const: film.Const,
+            title: film.Title,
+            platforms: flatrate,
+            releaseDate: d.movie_results[0]?.release_date,
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      }),
+    );
+  }
+
   setResults(found);
   setLoading(false);
 };
