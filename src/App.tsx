@@ -22,7 +22,7 @@ function App() {
         setLoading={setLoading}
         setError={setError}
       />
-      <MovieList results={results} error={error} />
+      <MovieList results={results} error={error} loading={loading} />
     </div>
   );
 }

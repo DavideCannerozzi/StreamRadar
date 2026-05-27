@@ -4,34 +4,43 @@ import MovieCard from "../MovieCard/MovieCard";
 interface MovieListProps {
   results: Result[];
   error: string | null;
+  loading: boolean;
 }
 
-export default function MovieList({ results, error }: MovieListProps) {
+export default function MovieList({ results, error, loading }: MovieListProps) {
+  if (loading) {
+    return (
+      <div className="flex justify-center py-8">
+        <div className="w-10 h-10 border-4 border-blue-300 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+  if (error) {
+    return <p className="text-red-500 font-bold">{error}</p>;
+  }
+  if (results.length === 0) {
+    return (
+      <p className="text-gray-400">
+        No streaming providers found yet. Upload your IMDb watchlist and click
+        Search to check availability.
+      </p>
+    );
+  }
+
   return (
-    <>
-      {error ? (
-        <p className="text-red-500 font-bold">{error}</p>
-      ) : results.length === 0 ? (
-        <p className="text-gray-400">
-          No streaming providers found yet. Upload your IMDb watchlist and click
-          Search to check availability.
-        </p>
-      ) : (
-        <table className="table-auto w-full">
-          <thead>
-            <tr>
-              <th className="text-left pb-8">Title</th>
-              <th className="text-left pb-8">Year</th>
-              <th className="text-left pb-8">Platform</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map((result) => (
-              <MovieCard key={result.Const} result={result} />
-            ))}
-          </tbody>
-        </table>
-      )}
-    </>
+    <table className="table-auto w-full">
+      <thead>
+        <tr>
+          <th className="text-left pb-8">Title</th>
+          <th className="text-left pb-8">Year</th>
+          <th className="text-left pb-8">Platform</th>
+        </tr>
+      </thead>
+      <tbody>
+        {results.map((result) => (
+          <MovieCard key={result.Const} result={result} />
+        ))}
+      </tbody>
+    </table>
   );
 }
