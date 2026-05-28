@@ -9,6 +9,7 @@ export default function FileUploader({
   loading,
   setLoading,
   setError,
+  setCounter,
 }: FileUploaderProps) {
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     setError(null);
@@ -28,8 +29,9 @@ export default function FileUploader({
   };
 
   const handleSearch = () => {
-    searchMovies(data, setResults, setLoading);
+    searchMovies(data, setResults, setLoading, setCounter);
     setError(null);
+    setCounter(0);
   };
 
   return (

@@ -7,12 +7,14 @@ export const searchMovies = async (
   data: Movies[],
   setResults: (results: Result[]) => void,
   setLoading: (loading: boolean) => void,
+  setCounter: React.Dispatch<React.SetStateAction<number>>,
 ) => {
   const found: Result[] = [];
   setLoading(true);
   const batchSize = 10;
+  const totalMovies = data.length;
 
-  for (let i = 0; i < data.length; i += batchSize) {
+  for (let i = 0; i < totalMovies; i += batchSize) {
     const batchArray = data.slice(i, i + batchSize);
     await Promise.all(
       batchArray.map(async (film) => {
@@ -39,6 +41,8 @@ export const searchMovies = async (
           });
         } catch (error) {
           console.error(error);
+        } finally {
+          setCounter((prev) => prev + 1);
         }
       }),
     );

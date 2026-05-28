@@ -11,6 +11,7 @@ function App() {
   const [results, setResults] = useState<Result[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [counter, setCounter] = useState<number>(0);
   return (
     <div className="container mx-auto min-h-screen flex flex-col items-center gap-24">
       <h1 className="text-4xl font-bold tracking-tight mt-12">Stream Radar</h1>
@@ -21,8 +22,15 @@ function App() {
         loading={loading}
         setLoading={setLoading}
         setError={setError}
+        setCounter={setCounter}
       />
-      <MovieList results={results} error={error} loading={loading} />
+      <MovieList
+        results={results}
+        error={error}
+        loading={loading}
+        counter={counter}
+        totalMovies={data.length}
+      />
     </div>
   );
 }

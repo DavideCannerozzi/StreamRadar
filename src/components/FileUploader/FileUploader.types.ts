@@ -13,6 +13,7 @@ export interface FileUploaderProps {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setError: React.Dispatch<React.SetStateAction<string | null>>;
+  setCounter: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface Platform {

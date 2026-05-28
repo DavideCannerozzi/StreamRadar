@@ -5,13 +5,24 @@ interface MovieListProps {
   results: Result[];
   error: string | null;
   loading: boolean;
+  counter: number;
+  totalMovies: number;
 }
 
-export default function MovieList({ results, error, loading }: MovieListProps) {
+export default function MovieList({
+  results,
+  error,
+  loading,
+  counter,
+  totalMovies,
+}: MovieListProps) {
   if (loading) {
     return (
       <div className="flex justify-center py-8">
         <div className="w-10 h-10 border-4 border-blue-300 border-t-transparent rounded-full animate-spin"></div>
+        <span className="text-gray-400 italic ml-8">
+          {counter} of {totalMovies} movies checked
+        </span>
       </div>
     );
   }
