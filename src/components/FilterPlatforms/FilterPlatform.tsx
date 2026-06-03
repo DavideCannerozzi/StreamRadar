@@ -4,8 +4,10 @@ interface FilterPlatformProps {
 
 export default function FilterPlatform({ setValue }: FilterPlatformProps) {
   return (
-    <div>
-      <label htmlFor="platforms">Filter By Platform:</label>
+    <div className="flex-row items-center gap-4">
+      <label htmlFor="platforms" className="text-sm font-medium text-gray-600">
+        Filter By Platform:
+      </label>
       <select
         name="platforms"
         id="platforms"

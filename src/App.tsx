@@ -6,6 +6,7 @@ import type {
   Movies,
 } from "./components/FileUploader/FileUploader.types";
 import FilterPlatform from "./components/FilterPlatforms/FilterPlatform";
+import ScrollTop from "./components/ScrollTop/ScrollTop";
 
 function App() {
   const [data, setData] = useState<Movies[]>([]);
@@ -35,6 +36,7 @@ function App() {
         totalMovies={data.length}
         value={value}
       />
+      <ScrollTop />
     </div>
   );
 }
