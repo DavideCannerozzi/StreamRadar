@@ -1,13 +1,5 @@
-import type { Result } from "../FileUploader/FileUploader.types";
 import MovieCard from "../MovieCard/MovieCard";
-
-interface MovieListProps {
-  results: Result[];
-  error: string | null;
-  loading: boolean;
-  counter: number;
-  totalMovies: number;
-}
+import type { MovieListProps } from "./MovieList.types";
 
 export default function MovieList({
   results,
@@ -15,6 +7,7 @@ export default function MovieList({
   loading,
   counter,
   totalMovies,
+  value,
 }: MovieListProps) {
   if (loading) {
     return (
@@ -38,20 +31,29 @@ export default function MovieList({
     );
   }
 
+  const filteredPlatforms =
+    value === ""
+      ? results
+      : results.filter((result) =>
+          result.platforms.some((p) => p.provider_name === value),
+        );
+
   return (
-    <table className="table-auto w-full">
-      <thead>
-        <tr>
-          <th className="text-left pb-8">Title</th>
-          <th className="text-left pb-8">Year</th>
-          <th className="text-left pb-8">Platform</th>
-        </tr>
-      </thead>
-      <tbody>
-        {results.map((result) => (
-          <MovieCard key={result.Const} result={result} />
-        ))}
-      </tbody>
-    </table>
+    <div className="p-8">
+      <table className="table-auto w-full">
+        <thead>
+          <tr>
+            <th className="text-left p-8">Title</th>
+            <th className="text-left p-8">Year</th>
+            <th className="text-left p-8">Platform</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredPlatforms.map((result) => (
+            <MovieCard key={result.Const} result={result} />
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }

@@ -5,6 +5,7 @@ import type {
   Result,
   Movies,
 } from "./components/FileUploader/FileUploader.types";
+import FilterPlatform from "./components/FilterPlatforms/FilterPlatform";
 
 function App() {
   const [data, setData] = useState<Movies[]>([]);
@@ -12,6 +13,7 @@ function App() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [counter, setCounter] = useState<number>(0);
+  const [value, setValue] = useState<string>("");
   return (
     <div className="container mx-auto min-h-screen flex flex-col items-center gap-24">
       <h1 className="text-4xl font-bold tracking-tight mt-12">Stream Radar</h1>
@@ -24,12 +26,14 @@ function App() {
         setError={setError}
         setCounter={setCounter}
       />
+      <FilterPlatform setValue={setValue} />
       <MovieList
         results={results}
         error={error}
         loading={loading}
         counter={counter}
         totalMovies={data.length}
+        value={value}
       />
     </div>
   );

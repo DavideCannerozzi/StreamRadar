@@ -35,7 +35,7 @@ export default function FileUploader({
   };
 
   return (
-    <div>
+    <div className="flex sm:flex-row flex-col gap-6 sm:gap-0">
       <input
         type="file"
         name="file"

@@ -8,10 +8,12 @@ export default function MovieCard({ result }: { result: Result }) {
       <td className="py-4">
         <div className="flex gap-4 items-center">
           {result.platforms.length === 0 ? (
-            <span className="text-sm text-gray-500">No streaming provider available</span>
+            <span className="text-sm text-gray-500">
+              No streaming provider available
+            </span>
           ) : (
             result.platforms.map((platform) => (
-              <div key={platform.provider_id} className="flex items-center">
+              <div key={platform.provider_id}>
                 {platform.logo_path ? (
                   <img
                     src={`https://image.tmdb.org/t/p/original${platform.logo_path}`}
