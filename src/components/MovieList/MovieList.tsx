@@ -13,7 +13,7 @@ export default function MovieList({
     return (
       <div className="flex justify-center py-8">
         <div className="w-10 h-10 border-4 border-blue-300 border-t-transparent rounded-full animate-spin"></div>
-        <span className="text-gray-400 italic ml-8">
+        <span className="text-gray-600 italic ml-8">
           {counter} of {totalMovies} movies checked
         </span>
       </div>
@@ -24,7 +24,7 @@ export default function MovieList({
   }
   if (results.length === 0) {
     return (
-      <p className="text-gray-400">
+      <p className="text-gray-600">
         No streaming providers found yet. Upload your IMDb watchlist and click
         Search to check availability.
       </p>

@@ -16,7 +16,7 @@ function App() {
   const [counter, setCounter] = useState<number>(0);
   const [value, setValue] = useState<string>("");
   return (
-    <div className="container mx-auto min-h-screen flex flex-col items-center gap-24">
+    <main className="container mx-auto min-h-screen flex flex-col items-center gap-24">
       <h1 className="text-4xl font-bold tracking-tight mt-12">Stream Radar</h1>
       <FileUploader
         setData={setData}
@@ -37,7 +37,7 @@ function App() {
         value={value}
       />
       <ScrollTop />
-    </div>
+    </main>
   );
 }
 

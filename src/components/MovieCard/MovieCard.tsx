@@ -2,7 +2,7 @@ import type { Result } from "../FileUploader/FileUploader.types";
 
 export default function MovieCard({ result }: { result: Result }) {
   return (
-    <tr className="border-b border-gray-200">
+    <tr className="border-b border-gray-600">
       <td className="text-sm font-medium py-4">{result.title}</td>
       <td className="text-sm font-medium py-4">{result.releaseDate}</td>
       <td className="py-4">

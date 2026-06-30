@@ -36,7 +36,11 @@ export default function FileUploader({
 
   return (
     <div className="flex sm:flex-row flex-col gap-6 sm:gap-0">
+      <label htmlFor="csv-upload" className="sr-only">
+        Upload IMDB CSV file
+      </label>
       <input
+        id="csv-upload"
         type="file"
         name="file"
         accept=".csv"
