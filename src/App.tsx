@@ -27,7 +27,9 @@ function App() {
         setError={setError}
         setCounter={setCounter}
       />
-      <FilterPlatform setValue={setValue} />
+      {results.length > 0 && (
+        <FilterPlatform setValue={setValue} results={results} />
+      )}
       <MovieList
         results={results}
         error={error}
