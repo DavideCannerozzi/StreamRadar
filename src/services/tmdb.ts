@@ -19,25 +19,31 @@ export const searchMovies = async (
     await Promise.all(
       batchArray.map(async (film) => {
         try {
-          const response = await fetch(
+          const findResponse = await fetch(
             `https://api.themoviedb.org/3/find/${film.Const}?external_source=imdb_id&api_key=${import.meta.env.VITE_API_KEY}`,
           );
-          const d = await response.json();
-          const tmdbId = d.movie_results[0]?.id;
+          if (!findResponse.ok) {
+            throw new Error(`Tmdb request failed: ${findResponse.status}`);
+          }
+          const findData = await findResponse.json();
+          const tmdbId = findData.movie_results[0]?.id;
           if (!tmdbId) return;
 
-          const response2 = await fetch(
+          const providerResponse = await fetch(
             `https://api.themoviedb.org/3/movie/${tmdbId}/watch/providers?api_key=${import.meta.env.VITE_API_KEY}`,
           );
-          const d2 = await response2.json();
-          const flatrate = d2.results?.IT?.flatrate;
+          if (!providerResponse.ok) {
+            throw new Error(`Tmdb request failed: ${providerResponse.status}`);
+          }
+          const providerData = await providerResponse.json();
+          const flatrate = providerData.results?.IT?.flatrate;
           if (!flatrate) return;
 
           found.push({
             Const: film.Const,
             title: film.Title,
             platforms: flatrate,
-            releaseDate: d.movie_results[0]?.release_date,
+            releaseDate: findData.movie_results[0]?.release_date,
           });
         } catch (error) {
           console.error(error);

@@ -31,12 +31,16 @@ export default function MovieList({
     );
   }
 
-  const filteredPlatforms =
+  const filteredResults =
     value === ""
       ? results
       : results.filter((result) =>
           result.platforms.some((p) => p.provider_name === value),
         );
+
+  if (value !== "" && filteredResults.length === 0) {
+    return <p className="text-red-500 font-bold">No movies found on {value}</p>;
+  }
 
   return (
     <div className="p-8">
@@ -49,7 +53,7 @@ export default function MovieList({
           </tr>
         </thead>
         <tbody>
-          {filteredPlatforms.map((result) => (
+          {filteredResults.map((result) => (
             <MovieCard key={result.Const} result={result} />
           ))}
         </tbody>
