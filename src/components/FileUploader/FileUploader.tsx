@@ -46,6 +46,7 @@ export default function FileUploader({
         accept=".csv"
         onChange={handleFile}
         className="text-sm text-gray-500 file:mr-4 file:py-2 file:px-6 file:border file:border-black file:bg-white file:text-black file:text-sm file:font-medium hover:file:bg-black hover:file:text-white file:transition-colors file:duration-200 file:cursor-pointer"
+        disabled={loading}
       />
       <button
         onClick={handleSearch}
